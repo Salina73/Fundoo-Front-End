@@ -43,9 +43,13 @@ export class ResetPasswordComponent implements OnInit
           this.snackbar.open("Password set successfully!!!!","close", { duration: 8000 } );   
           this.route.navigate(['/login']);
         }  
-
+        else
+        {
+          this.snackbar.open("Password failed to reset !!!!","close", { duration: 8000 } ); 
+        }
       }
     );
   }
+
 }
 

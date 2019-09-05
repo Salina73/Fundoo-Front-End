@@ -24,7 +24,7 @@ export class ForgotPasswordComponent implements OnInit
   });
   }
   getErrorMessage() {
-    return this.emailId.hasError('required') ? 'required' :
+    return this.emailId.hasError('required') ? 'Email is required' :
         this.emailId.hasError('email') ? 'Not a valid email' : '';
   }
  resend()

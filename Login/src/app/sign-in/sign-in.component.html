@@ -1,37 +1,50 @@
 <form class="example-form" [formGroup]="newForm" (ngSubmit)="Submit()">
-  <mat-label  class="Register">Registration</mat-label>
+  <mat-label class="Register">Registration</mat-label>
 
-    <mat-form-field class="example-full-width">
-      <input type="text" matInput placeholder="First Name" formControlName="firstName" required>
-      <mat-error *ngIf="firstName.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input type="text" matInput placeholder="First Name" formControlName="firstName" pattern="^[a-zA-Z \-\']+" required>
+    <mat-error *ngIf="firstName.errors.required">
+        Require Valid first name
+     </mat-error>
   
-    <mat-form-field class="example-full-width">
-        <input type="text" matInput placeholder="Last Name" formControlName="lastName" required>
-        <mat-error *ngIf="lastName.invalid">{{getErrorMessage1()}}</mat-error>
-    </mat-form-field>
+  </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-        <input type="number"matInput #input maxlength="10"  #input minlength="10"  placeholder="Mobile Number"
-                      formControlName="mobileNum" required>
-        <mat-error *ngIf="mobileNum.invalid">{{getErrorMessage2()}}</mat-error>
-      </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input type="text" matInput placeholder="Last Name" formControlName="lastName" pattern="^[a-zA-Z \-\']+" required >
+    <mat-error *ngIf="lastName.hasError('required')">
+      Require Valid last name
+     </mat-error>
+  </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-          <input type="email" matInput placeholder="Email-Id" formControlName="emailId" required>
-          <mat-error *ngIf="emailId.invalid">{{getErrorMessage3()}}</mat-error>
-        </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input  matInput  placeholder="Mobile Number" 
+    formControlName="mobileNum" maxlength="10" pattern="^[7-9][0-9]{9}$" required>
+      <mat-error *ngIf="mobileNum.hasError('required')">
+        Require Valid mobile number
+       </mat-error>
+  </mat-form-field>
 
-        <mat-form-field class="example-full-width" >
-                <input type="password" matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required> 
-                <mat-icon mat-icon-button matSuffix (click)="hide = !hide" 
-                 [attr.aria-label]="'Hide password'" 
-                 [attr.aria-pressed]="hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                 <mat-error *ngIf="password.invalid">{{getErrorMessage4()}}</mat-error>
-          </mat-form-field>
-          <div class="b1">
-          <button type="submit" class="button buttons">Submit</button>   
-          <button type="reset" class="button buttons" >Reset</button> 
-        </div>   
-  </form>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" formControlName="emailId" 
+     pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" [errorStateMatcher]="matcher" required>
+    <mat-error *ngIf="emailId.hasError('required')">
+      Require valid email address
+    </mat-error>
   
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input type="password" matInput placeholder="Password" [type]="hide ? 'password' : 'text'"
+      formControlName="password" minlength="8" required>
+    <mat-icon mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="password.hasError('required')">
+       Require minimum length of password is 8
+       </mat-error>
+  </mat-form-field>
+  <br>
+  <div class="b1">
+    <button type="submit" class="button buttons" [disabled]="!newForm.valid" >Submit</button>
+    <button type="reset" class="button buttons">Reset</button>
+  </div>
+</form>

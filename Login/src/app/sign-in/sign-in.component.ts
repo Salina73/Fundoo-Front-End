@@ -8,15 +8,15 @@ import { Router } from '@angular/router';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
-export class SignInComponent implements OnInit
+export class SignInComponent implements OnInit 
 {
   hide = true;
   newForm:FormGroup;
 
-  firstName = new FormControl('', [Validators.required]);
-  lastName = new FormControl('', [Validators.required]);
-  mobileNum = new FormControl('', [Validators.required]);
-  emailId = new FormControl('', [Validators.required, Validators.email]);
+  firstName = new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z \-\']+')]);
+  lastName = new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z ]*$')]);
+  mobileNum = new FormControl('', [Validators.required,Validators.pattern('\d{5}([- ]*)\d{6}')]);
+  emailId= new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]);
   password = new FormControl('', [Validators.required]);
 
   constructor(private appService:AppService,private snackbar:MatSnackBar,private route:Router){}
@@ -33,21 +33,6 @@ export class SignInComponent implements OnInit
   password : new FormControl('')
    });
   }
-
-  getErrorMessage() 
-  {return this.firstName.hasError('required') ? 'first name is required' : '';}
-
-  getErrorMessage1() 
-   { return this.lastName.hasError('required') ? 'last name is required' : ''; }
-
-  getErrorMessage2() 
-  { return this.mobileNum.hasError('required') ? 'mobile number is required' : ''; }
-
-  getErrorMessage3() 
-   { return this.emailId.hasError('email') ? 'require valid email id ' : ''; }
-
-  getErrorMessage4() 
-  { return this.password.hasError('required') ? 'please enter password' : ''; }
   
   Submit()
   {
@@ -59,7 +44,7 @@ export class SignInComponent implements OnInit
           this.snackbar.open("Registration done!!!!","close", { duration: 8000 } );   
           this.route.navigate(['/login']);
         }  
-        else if(response.status==500)
+        else
           this.snackbar.open("Registration already register!!!!");
       }
     );

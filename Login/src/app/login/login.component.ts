@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit
 
 
   getErrorMessage() {
-    return this.emailId.hasError('required') ? 'required' :
+    return this.emailId.hasError('required') ? 'Email is required' :
         this.emailId.hasError('email') ? 'Not a valid email' :
-        this.password.hasError('required') ? 'required' :
+        this.password.hasError('required') ? 'Password is required' :
             '';
   }
   Login()
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit
           this.snackbar.open("Login Successfully!!!!","close", { duration: 8000 } );   
           this.route.navigate(['/sign-in']);
         }  
-        else if(response.statusCode==401)
+        else
           this.snackbar.open("Login failed!!!!","close", { duration: 8000 } );
       }
     );
