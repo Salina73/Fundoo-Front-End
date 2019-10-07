@@ -1,23 +1,25 @@
-<form class="example-form" [formGroup]="login" (ngSubmit)="Login()">
+<div class="div">
+    <form class="example-form" [formGroup]="login">
         <mat-label class="Login">Login</mat-label>
         <mat-form-field class="example-full-width">
-          <input type="email" matInput placeholder="Email-Id" formControlName="emailId" required>
-          <mat-error *ngIf="emailId.invalid">{{getErrorMessage()}}</mat-error>
+            <input type="email" matInput placeholder="Email-Id" formControlName="emailId" required>
+            <mat-error *ngIf="emailId.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width" >
-                <input type="password" matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required> 
-                <mat-icon mat-icon-button matSuffix (click)="hide = !hide" 
-                 [attr.aria-label]="'Hide password'" 
-                 [attr.aria-pressed]="hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                 <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
-          </mat-form-field>
-                
-                <div class="b1">
-                <button type="submit" class="button buttons">Login</button>  
-         
-                <button type="button" class="button buttons" routerLink="/sign-in" >Register</button>  
-              </div>   
-           <h4 style="color: #a6a6a6" routerLink="/Forgot-Password" >Forgot password?</h4>
-        </form>
-        
+        <mat-form-field class="example-full-width">
+            <input type="password" matInput placeholder="Password" [type]="hide ? 'password' : 'text'"
+                formControlName="password" required>
+            <mat-icon mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <div class="b1">
+            <button type="submit" class="button buttons" (click)="Login()" data-style="contract-overlay"
+                style="z-index: 10;" [disabled]="!login.valid">Login</button>
+
+            <button type="button" class="button buttons" routerLink="/sign-in">Register</button>
+        </div>
+        <h4 style="color: #a6a6a6" routerLink="/Forgot-Password">Forgot password?</h4>
+    </form>
+</div>

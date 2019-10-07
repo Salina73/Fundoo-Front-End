@@ -1,0 +1,21 @@
+.card-input{
+    background: transparent;
+    border: none;
+    font: normal 16px Google Sans, Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+    outline: none; 
+    word-wrap: break-word;
+ 
+  }
+  .card-input1{
+    background: transparent;
+    border: none;
+    font: normal 12px Google Sans, Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+    outline: none;  
+    word-wrap: break-word;
+  }
+  .note-icon{
+    font-size: 20px;
+    color: #8c8c8c;
+  }
+ 
+  

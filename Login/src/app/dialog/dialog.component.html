@@ -1,0 +1,41 @@
+<form [formGroup]="dialog">
+    <div fxLayout="column" fxLayoutGap="8px">
+        <div fxLayout="row">
+            <textarea class="card-input" style="width: 492px;" role="textbox" cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize" matInput value="{{this.data.title}}" formControlName="title"></textarea>
+            <button mat-icon-button matTooltip="Pin note">
+                <mat-icon>attachment</mat-icon>
+            </button>
+        </div>
+        <textarea class="card-input1" role="textbox" role="textbox" cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize" matInput value="{{this.data.description}}"
+            formControlName="description" autofocus></textarea>
+        <div fxLayout="row" fxLayoutGap="3px">
+            <button mat-icon-button matTooltip="Remind me">
+                <mat-icon class="note-icon">add_alert</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Collaborator">
+                <mat-icon class="note-icon">person_add</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Change color">
+                <mat-icon class="note-icon">color_lens</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Add image">
+                <mat-icon class="note-icon">crop_original</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Archieve">
+                <mat-icon class="note-icon">archive_none</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="More">
+                <mat-icon class="note-icon">more_vert</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Undo">
+                <mat-icon class="note-icon">undo</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Redo">
+                <mat-icon class="note-icon">redo</mat-icon>
+            </button>
+            <button mat-icon-button type="submit" mat-dialog-close (click)="updateNote()" class="close">Close</button>
+        </div>
+    </div>
+</form>

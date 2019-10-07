@@ -1,0 +1,172 @@
+<div>
+    <mat-toolbar class="toolbar" fxLayout="row">
+        <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <div fxLayout="row" fxLayoutAlign="start center" class="logo" fxLayoutGap="5px" fxShow="true"
+            fxHide.lt-md="true">
+            <span><img src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"></span>
+            <span class="keep">Fundoo Notes</span>
+        </div>
+        <div class="fx1">
+            <form>
+                <div class="searchs" fxLayout="row" fxLayoutAlign="end center">
+                    <button mat-icon-button matTooltip="Search" matTooltipClass="tooltip">
+                        <mat-icon>search</mat-icon>
+                    </button>
+
+                    <input class="search" aria-label=" background-color: #fff;
+                    border-color: #e0e0e0 Search" autocomplete="off" placeholder="Search" value="" name="q"
+                        role="combobox" type="text" aria-hidden="false" fxHide.lt-md="true" fxFlex>
+                    <button mat-icon-button type="reset" matTooltip="Clear search">
+                        <mat-icon>close</mat-icon>
+                    </button>
+
+                </div>
+            </form>
+        </div>
+        <div style="width: 150px" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+            <button mat-icon-button matTooltip="Refresh">
+                <mat-icon>refresh</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="View">
+                <mat-icon mat-icon-button matSuffix (click)="list = !list" [attr.aria-pressed]="hide">
+                    {{list ? 'view_agenda' : 'grid_view'}}</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Settings">
+                <mat-icon>settings</mat-icon>
+            </button>
+        </div>
+        <div class="fx" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+            <button mat-icon-button matTooltip="Apps">
+                <mat-icon>apps</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Logout" (click)="logout()">
+                <mat-icon>logout</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+    <mat-divider [inset]="true"></mat-divider>
+    <div>
+        <mat-drawer-container class="main-container" fxLayout="column">
+            <mat-drawer #sidenav mode="side" class="sider">
+                <div class="menu-item">
+                    <button mat-button routerLink="/home-dashboard">
+                        <mat-icon class="drawer">lightbulb_outline</mat-icon>
+                        Notes
+                    </button>
+                </div>
+                <div class="menu-item">
+                    <button mat-button>
+                        <mat-icon class="drawer">notifications_none</mat-icon>
+                        Reminder
+                    </button>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="menu-item">
+                    <label class="labels">LABELS</label>
+                    <br>
+                    <button mat-button>
+                        <mat-icon class="drawer">colorize</mat-icon>
+                        Edit Labels
+                    </button>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="menu-item">
+                    <button mat-button>
+                        <mat-icon class="drawer">archive_none</mat-icon>
+                        Archive
+                    </button>
+                </div>
+                <div class="menu-item">
+                    <button mat-button>
+                        <mat-icon class="drawer">delete_outline</mat-icon>
+                        Trash
+                    </button>
+                </div>
+            </mat-drawer>
+            <mat-drawer-content class="drawer-content" fxLayoutAlign="start center" fxLayout="column">
+                <br>
+                <mat-card class="card" *ngIf="popup==1" fxLayout="row">
+                    <a type="button" (click)="popup=2"> <input type="text" class="card-input"
+                            fxLayoutAlign="start center" placeholder="Take a note..."></a>
+                    <div fxLayout="row" fxLayoutAlign="end center" style="width: 300px" fxLayoutGap="12px">
+                        <button mat-icon-button matTooltip="New list">
+                            <mat-icon>check_box</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="New note with drawing">
+                            <mat-icon>brush</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="New note with image">
+                            <mat-icon>crop_original</mat-icon>
+                        </button>
+                    </div>
+                </mat-card>
+                <form [formGroup]="create">
+                    <mat-card class="card1" *ngIf="popup==2" fxLayout="column" fxLayoutGap="8px">
+                        <div fxLayout="row">
+                            <textarea class="card-input" style="width: 492px;" role="textbox" cdkTextareaAutosize
+                                #autosize="cdkTextareaAutosize" placeholder="Title" formControlName="title"></textarea>
+                            <button mat-icon-button matTooltip="Pin note">
+                                <mat-icon>attachment</mat-icon>
+                            </button>
+                        </div>
+                        <textarea class="card-input1" role="textbox" role="textbox" cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize" placeholder="Take a note..."
+                            formControlName="description" autofocus></textarea>
+                        <div fxLayout="row" fxLayoutGap="3px">
+                            <button mat-icon-button matTooltip="Remind me" (click)="reminder()">
+                                <mat-icon class="note-icon">add_alert</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Collaborator">
+                                <mat-icon class="note-icon">person_add</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Change color">
+                                <mat-icon class="note-icon">color_lens</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Add image">
+                                <mat-icon class="note-icon">crop_original</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Archieve">
+                                <mat-icon class="note-icon">archive_none</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="More">
+                                <mat-icon class="note-icon">more_vert</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Undo">
+                                <mat-icon class="note-icon">undo</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Redo">
+                                <mat-icon class="note-icon">redo</mat-icon>
+                            </button>
+                            <button mat-icon-button type="submit" (click)="createNote()" class="close">Close</button>
+                        </div>
+                    </mat-card>
+                </form>
+                <br>
+                <mat-card class="display-note" fxLayoutAlign="center center" fxLayout="row wrap" fxLayoutGap="15px">
+                    <div class="all-notes"*ngFor="let myNote of notes" fxLayout="column" fxLayoutGap="15px" >
+                        <div (click)="openDialog(myNote)"fxLayout="column" fxLayoutGap="15px" >
+                        <div class="card-input" style=" word-wrap: break-word;">{{myNote.title}} </div>
+                        <div class="card-input1" style=" word-wrap: break-word;">{{myNote.description}}</div>
+                        </div>
+                
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <mat-icon matTooltip="Remind me" class="note-icons" (click)="reminder(myNote.noteid)">add_alert</mat-icon>
+                            <mat-icon matTooltip="Collaborator" class="note-icons">person_add</mat-icon>
+                            <mat-icon matTooltip="Change color" class="note-icons">color_lens</mat-icon>
+                            <mat-icon matTooltip="Add image" class="note-icons">crop_original</mat-icon>
+                            <mat-icon matTooltip="Archieve" class="note-icons">archive_none</mat-icon>
+                             <mat-icon matTooltip="More" mat-button [matMenuTriggerFor]="menu" class="note-icons">
+                                more_vert</mat-icon>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="deleteNote(myNote.noteid)">Delete note</button>
+                            </mat-menu>
+
+                        </div>
+                    </div>
+                </mat-card>
+            </mat-drawer-content>
+        </mat-drawer-container>
+    </div>
+</div>

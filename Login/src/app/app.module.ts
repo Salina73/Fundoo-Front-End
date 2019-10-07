@@ -15,7 +15,10 @@ import { AppService } from 'src/service/app.service';
 import { RouterModule } from '@angular/router';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-
+import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { DialogComponent } from './dialog/dialog.component';
+import {MatDialogModule} from "@angular/material";
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +26,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     LoginComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
- 
+    HomeDashboardComponent,
+    DialogComponent
+
   ],
 
   imports:
@@ -38,9 +43,12 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
       HttpClientModule,
       ReactiveFormsModule,
       DemoMaterialModule,
-      RouterModule
+      RouterModule,
+      FlexLayoutModule,
+      MatDialogModule
     ],
   providers: [AppService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }
