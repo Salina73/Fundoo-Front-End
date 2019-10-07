@@ -12,7 +12,7 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.Verification;
 @Service
-public class TokenGeneratoration {
+public class TokenGeneration {
 	  public  final String TOKEN_SECRET = "sd5745FAHFW";
 	
 	  //token generation

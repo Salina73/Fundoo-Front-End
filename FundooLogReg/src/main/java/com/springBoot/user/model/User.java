@@ -1,24 +1,34 @@
 package com.springBoot.user.model;
 
+import java.nio.file.Path;
 import java.time.LocalDateTime;
-import javax.persistence.Entity;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
 @Entity
 @Table
 @Data
+
 public class User
 {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long userId;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long userId;
 	private String firstName;
 	private String lastName;
 	private String emailId;
@@ -26,7 +36,41 @@ public class User
 	private String mobileNum;
 	private boolean isVerify;
 	
+	private String profilePic;
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
+    private List<Note> notes;
+	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
+    private List<Label> label;
+	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
+    private List<Collaborator> collaborators;
+	
 	private LocalDateTime dateTime = LocalDateTime.now();
+	
+	public List<Collaborator> getCollaborators() {
+		return collaborators;
+	}
+	public void setCollaborators(List<Collaborator> collaborators) {
+		this.collaborators = collaborators;
+	}
+	public List<Label> getLabel() {
+		return label;
+	}
+	public void setLabel(List<Label> label) {
+		this.label = label;
+	}
+	public List<Note> getNotes() 
+	{
+		return notes;
+	}
+	public void setNotes(List<Note> notes) 
+	{
+		this.notes = notes;
+	}
 	public Long getUserId() {
 		return userId;
 	}
@@ -76,4 +120,10 @@ public class User
 		this.dateTime = dateTime;
 	}
 
+	public String getProfilePic() {
+		return profilePic;
+	}
+	public void setProfilePic(String path) {
+		this.profilePic = path;
+	}
 }

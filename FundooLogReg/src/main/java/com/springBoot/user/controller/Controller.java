@@ -1,11 +1,14 @@
 package com.springBoot.user.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,8 +19,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.springBoot.exception.Exception;
 import com.springBoot.response.Response;
@@ -45,17 +49,17 @@ public class Controller
 	public ResponseEntity<Response> register(@RequestBody Userdto userDto)
 			throws Exception, UnsupportedEncodingException 
 	{
-		Response response = userService.Register(userDto);
+		Response response = userService.register(userDto);
 		System.out.println(response);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<ResponseToken> Login(@RequestBody Logindto logindto)
+	public ResponseEntity<ResponseToken> login(@RequestBody Logindto logindto)
 			throws Exception, UnsupportedEncodingException
 	{
-		ResponseToken response = userService.Login(logindto);
+		ResponseToken response = userService.login(logindto);
 		System.out.println(response);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
@@ -76,7 +80,6 @@ public class Controller
 		return new ResponseEntity<Response>(status, HttpStatus.OK);
 	}
 	
-	
 	@PutMapping("/setPassword")
     public ResponseEntity<Response> setPassword(@RequestBody Userdto userDto) throws Exception, UnsupportedEncodingException 
     {	
@@ -90,6 +93,24 @@ public class Controller
 	{
 		return userRepo.findAll();
 	}
-
-
+	
+	@PostMapping("/uploadPic")
+	public ResponseEntity<Response> uploadPic(@RequestHeader String token,@RequestParam MultipartFile image) throws IOException
+	{
+		Response response = userService.uploadProfilePic(token,image);
+		return new ResponseEntity<Response>(response, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getProfilePic")
+	public ResponseEntity<Resource> getProfilePic(@RequestHeader String token) throws MalformedURLException
+	{
+		Resource response = userService.profilePic(token);
+		return new ResponseEntity<Resource>(response, HttpStatus.OK);
+	}
+	@GetMapping("/getProfile")
+	public List<String> getProfile() throws MalformedURLException
+	{
+		List<String> user = userService.showProfile();
+		return user;
+	}
 }
