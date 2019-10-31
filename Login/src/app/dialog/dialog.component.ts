@@ -40,8 +40,6 @@ export class DialogComponent implements OnInit {
           this.snackbar.open("Note updated successfully!!!!", "close", { duration: 8000 });
         }
       }
-    );
-  
+    ); 
   }
-
 }

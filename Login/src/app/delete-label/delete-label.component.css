@@ -1,0 +1,17 @@
+
+mat-icon {
+    color: #8c8c8c;
+    font-size: 20px;
+}
+.showme{ 
+    display: none;
+  }
+  .showhim:hover .showme{
+    display : block;
+  }
+  .showhim:hover .ok{
+    display : none;
+  }
+  .label{
+      height:300px;
+  }

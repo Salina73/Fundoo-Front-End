@@ -1,0 +1,40 @@
+.avatar1 {
+  vertical-align: middle;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.profile {
+  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302);
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.name {
+  font-size: 13px;
+}
+
+.email {
+  font-size: 13px;
+}
+
+.mat-icon {
+  font-size: 38px;
+}
+
+.email-input {
+  outline: none;
+  font-size: 13px;
+}
+
+.search {
+  background: transparent;
+  border: none;
+  font: normal 13px Google Sans, Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  font-variant-ligatures: none;
+  height: 46px;
+  width: 400px;
+  outline: none;
+  box-sizing: border-box;
+}

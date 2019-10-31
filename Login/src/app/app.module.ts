@@ -19,6 +19,16 @@ import { HomeDashboardComponent } from './home-dashboard/home-dashboard.componen
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DialogComponent } from './dialog/dialog.component';
 import {MatDialogModule} from "@angular/material";
+import { AddLabelComponent } from './add-label/add-label.component';
+import { DeleteLabelComponent } from './delete-label/delete-label.component';
+import { CollabComponent } from './collab/collab.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { PinnedComponent } from './pinned/pinned.component';
+import { ArchieveComponent } from './archieve/archieve.component';
+import { TrashNoteComponent } from './trash-note/trash-note.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,8 +37,13 @@ import {MatDialogModule} from "@angular/material";
     ForgotPasswordComponent,
     ResetPasswordComponent,
     HomeDashboardComponent,
-    DialogComponent
-
+    DialogComponent,
+    AddLabelComponent,
+    DeleteLabelComponent,
+    CollabComponent,
+    PinnedComponent,
+    ArchieveComponent,
+    TrashNoteComponent,
   ],
 
   imports:
@@ -45,10 +60,12 @@ import {MatDialogModule} from "@angular/material";
       DemoMaterialModule,
       RouterModule,
       FlexLayoutModule,
-      MatDialogModule
+      MatDialogModule,
+      OwlDateTimeModule, 
+      OwlNativeDateTimeModule
     ],
   providers: [AppService],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent]
+  entryComponents: [DialogComponent,AddLabelComponent,DeleteLabelComponent,CollabComponent]
 })
 export class AppModule { }

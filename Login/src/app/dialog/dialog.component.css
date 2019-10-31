@@ -17,5 +17,16 @@
     font-size: 20px;
     color: #8c8c8c;
   }
- 
-  
+ .mat-dialog{
+   margin:-24px;
+ }
+ .padding{
+   margin-top: 24px;
+   margin-bottom: 24px;
+ }
+ .update{
+  margin-left: -24px
+ }
+ @media only screen and (max-width: 900px){
+  .update{ width: 90%; }
+}

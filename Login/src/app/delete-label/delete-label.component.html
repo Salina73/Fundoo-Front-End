@@ -1,0 +1,42 @@
+<h4>Edit Labels</h4>
+<form [formGroup]="create">
+    <mat-dialog-content>
+        <div fxLayout="row" fxLayoutAlign="end center">
+            <button mat-icon-button type="reset" matTooltip="Cancle">
+                <mat-icon>close</mat-icon>
+            </button>
+
+            <mat-form-field>
+                <input matInput placeholder="Create new label" formControlName="labelName">
+            </mat-form-field><br>
+            <button mat-icon-button type="submit" (click)="createLabel()" matTooltip="Create label">
+                <mat-icon>check</mat-icon>
+            </button>
+        </div>
+        <div fxLayout="column">
+            <form [formGroup]="updateLabels">
+                <div *ngFor="let label of labels" fxLayout="row" class="showhim">
+                    <button mat-icon-button type="submit" (click)="deleteLabel(label.labelid)">
+                        <mat-icon class="ok">label</mat-icon>
+                        <mat-icon class="showme" matTooltip="Delete label">delete</mat-icon>
+                    </button>
+                    <input type="text" matInput value="{{label.labelName}} " style="width: 170px;"
+                        formControlName="labelName">
+                    <button mat-icon-button type="submit" (click)="updateLabel(label.labelid)">
+                        <mat-icon matTooltip="Rename label">create</mat-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <mat-divider></mat-divider>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <div  fxLayout="row" fxLayoutAlign="end center">
+        <button mat-icon-button type="submit" (click)="createLabel()" matTooltip="Create label">
+           Done
+        </button>
+    </div>
+    </mat-dialog-actions>
+ 
+</form>

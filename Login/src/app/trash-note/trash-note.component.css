@@ -1,0 +1,48 @@
+mat-icon {
+    color: #8c8c8c;
+    font-size: 20px;
+}
+
+.mat-icon {
+    font-size: 25px;
+}
+
+.card-inputs {
+    background: transparent;
+    border: none;
+    font: normal 16px Google Sans, Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+    outline: none;
+    width: 170px;
+}
+
+.card-input1 {
+    background: transparent;
+    border: none;
+    font: normal 12px Google Sans, Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+    outline: none;
+    width: 170px;
+}
+
+.note-icons {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.all-notes {
+    display: block;
+    margin-top: 15px;
+    width: 240px;
+    border: 1px solid transparent;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    border-color: #e0e0e0
+}
+.all-notes:hover{
+    box-shadow: 1px 1px 5px grey;
+}
+.display-note {
+    width: 807px;
+    height: max-content;
+    outline: none;
+}

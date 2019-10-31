@@ -1,0 +1,27 @@
+
+<mat-card class="display-note" fxLayoutAlign="start center" fxLayout="row wrap" fxLayoutGap="15px">
+    <div class="all-notes" *ngFor="let myNote of notes" fxLayout="column" fxLayoutGap="15px"
+        [ngStyle]="{'background':myNote.color}">
+       
+        <div (click)="openDialog(myNote)" fxLayout="column" fxLayoutGap="15px">
+            <div fxLayout="row">
+                <div class="card-inputs" style=" word-wrap: break-word;">{{myNote.title}}</div>
+
+            </div>
+            <div class="card-input1" style=" word-wrap: break-word;">{{myNote.description}}</div>
+
+        </div>
+
+        <div  fxLayout="row" fxLayoutGap="20px">
+        
+            <mat-icon matTooltip="More" mat-button [matMenuTriggerFor]="menu" class="note-icons">
+                more_vert</mat-icon>
+            <mat-menu #menu="matMenu" class="matMenu">
+                <button mat-menu-item (click)="deleteNote(myNote.noteid)">Delete Forever</button>
+                <button mat-menu-item (click)="trashNote(myNote.noteid)">Restore</button>
+            </mat-menu>
+        </div> 
+    </div>
+</mat-card> 
+
+

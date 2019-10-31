@@ -1,5 +1,6 @@
-<form [formGroup]="dialog">
-    <div fxLayout="column" fxLayoutGap="8px">
+<mat-dialog-content class="mat-dialog" [ngStyle]="{'background':this.data.color}">
+<form [formGroup]="dialog" class="padding">
+    <div fxLayout="column" fxLayoutGap="8px"  [ngStyle]="{'background':this.data.color}" >
         <div fxLayout="row">
             <textarea class="card-input" style="width: 492px;" role="textbox" cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize" matInput value="{{this.data.title}}" formControlName="title"></textarea>
@@ -10,7 +11,7 @@
         <textarea class="card-input1" role="textbox" role="textbox" cdkTextareaAutosize
             #autosize="cdkTextareaAutosize" matInput value="{{this.data.description}}"
             formControlName="description" autofocus></textarea>
-        <div fxLayout="row" fxLayoutGap="3px">
+        <div fxLayout="row" class="update">
             <button mat-icon-button matTooltip="Remind me">
                 <mat-icon class="note-icon">add_alert</mat-icon>
             </button>
@@ -29,13 +30,14 @@
             <button mat-icon-button matTooltip="More">
                 <mat-icon class="note-icon">more_vert</mat-icon>
             </button>
-            <button mat-icon-button matTooltip="Undo">
+            <!-- <button mat-icon-button matTooltip="Undo">
                 <mat-icon class="note-icon">undo</mat-icon>
             </button>
             <button mat-icon-button matTooltip="Redo">
                 <mat-icon class="note-icon">redo</mat-icon>
-            </button>
+            </button> -->
             <button mat-icon-button type="submit" mat-dialog-close (click)="updateNote()" class="close">Close</button>
         </div>
     </div>
 </form>
+</mat-dialog-content>

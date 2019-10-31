@@ -1,0 +1,59 @@
+
+<mat-card class="display-note" fxLayoutAlign="start center" fxLayout="row wrap" fxLayoutGap="15px">
+    <div class="all-notes" *ngFor="let myNote of notes" fxLayout="column" fxLayoutGap="15px"
+        [ngStyle]="{'background':myNote.color}">
+        <mat-icon mat-icon-button matSuffix (click)="bookmark = !bookmark" class="pin" [attr.aria-pressed]="hide"
+         matTooltip="Pin" (click)="pinNote(myNote.noteid)">{{bookmark ? 'bookmark' : 'bookmark_outline'}}
+        </mat-icon>
+        <div (click)="openDialog(myNote)" fxLayout="column">
+            <div fxLayout="row">
+                <div class="card-inputs" style=" word-wrap: break-word;">{{myNote.title}}</div>
+
+            </div>
+            <div class="card-input1" style=" word-wrap: break-word;">{{myNote.description}}</div>
+
+        </div>
+
+        <div id="tool-section" fxLayout="row" fxLayoutGap="20px">
+            <mat-menu #palette="matMenu">
+                <div class="palette" fxLayout="row wrap" fxLayoutGap="8px">
+                    <div (click)="color(i,myNote.noteid)" *ngFor="let i of colorCodes" class="circle"
+                        [ngStyle]="{'background':i}">
+
+                    </div>
+                </div>
+            </mat-menu>
+            <mat-menu #calender="matMenu">
+                <form [formGroup]="remindMe">
+                    <mat-form-field>
+                        <input matInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time"
+                            formControlName="dateTime">
+                        <owl-date-time #dt1></owl-date-time>
+                    </mat-form-field>
+                    <button mat-button type="submit" (click)="reminder(myNote.noteid)">Done</button>
+                </form>
+            </mat-menu>
+
+            <mat-icon matTooltip="Remind me" class="note-icons" [matMenuTriggerFor]="calender">
+                add_alert</mat-icon>
+
+
+            <mat-icon matTooltip="Collaborator" class="note-icons" (click)="addCollaborator(myNote.noteid)">person_add
+            </mat-icon>
+
+            <mat-icon matTooltip="Change color" class="note-icons" [matMenuTriggerFor]="palette">
+                color_lens</mat-icon>
+
+
+            <mat-icon matTooltip="Add image" class="note-icons">crop_original</mat-icon>
+            <mat-icon matTooltip="Archieve" class="note-icons" (click)="archiveNote(myNote.noteid)">archive_none</mat-icon>
+            <mat-icon matTooltip="More" mat-button [matMenuTriggerFor]="menu" class="note-icons">
+                more_vert</mat-icon>
+            <mat-menu #menu="matMenu" class="matMenu">
+                <button mat-menu-item (click)="trashNote(myNote.noteid)">Delete note</button>
+                <button mat-menu-item (click)="addLabel(myNote.noteid)">Add Label</button>
+            </mat-menu>
+        </div> 
+    </div>
+</mat-card> 
+

@@ -1,0 +1,6 @@
+<form [formGroup]="create">
+    <mat-form-field>
+        <input matInput placeholder="add label" formControlName="labelName">
+      </mat-form-field><br>
+      <button type="submit" mat-raised-button (click)="createLabel()">Create</button>
+</form>

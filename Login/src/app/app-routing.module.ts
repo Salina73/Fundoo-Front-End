@@ -6,6 +6,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
 import { AuthGuard } from './guard/auth.guard';
+import { ArchieveComponent } from './archieve/archieve.component';
 
 
 const routes: Routes =
@@ -16,6 +17,7 @@ const routes: Routes =
     { path: 'Forgot-Password', component: ForgotPasswordComponent },
     { path: 'Reset-Password', component: ResetPasswordComponent },
     { path: 'home-dashboard', component: HomeDashboardComponent,canActivate: [AuthGuard]},
+    { path: 'archieve', component: ArchieveComponent },
  
   ];
 
